@@ -14,6 +14,7 @@ export default function Register() {
     const handleRegister = async () => {
       try {
         await createUserWithEmailAndPassword(auth, email, password);
+        Alert.alert('Registration successful', 'Your account has been created successfully, you will be redirected to Home screen.')
       } catch (error) {
         Alert.alert('Authentication Error', 'Invalid email or password. Please try again.');  
       }
@@ -23,7 +24,6 @@ export default function Register() {
     <View style={styles.container}>
         <Text style={{fontSize: 36, fontWeight: 'bold', color: '#19191A', opacity: 0.87, marginTop: -50}}>Create an account</Text>
         <Text style={{fontSize: 16, color: '#19191A', opacity: 0.60}}>Please fill out your details below to create your account</Text>
-
         <View style={styles.inputContainer}>
             <Text style={styles.label}>Email</Text>
             <TextInput
@@ -38,26 +38,22 @@ export default function Register() {
                 secureTextEntry
                 onChangeText={setPassword}
                 placeholder='Enter your password'
-
             />
             <TextInput
                 style={styles.input}
                 secureTextEntry
                 placeholder='Confirm your password'
-
             />
         </View>
 
         <Pressable style={styles.button} onPress={handleRegister}>
            <Text style={styles.buttonText}>Register</Text>
         </Pressable>
-
         <Pressable style={{position: 'absolute', bottom: 50}} onPress={() => navigation.navigate('Login')}>
             <Text style={{fontSize: 16, color: '#19191A', opacity: 0.60}}>
                 Already have an account? <Text style={{fontWeight: 'bold'}}>Login</Text>
             </Text>
         </Pressable>
-
     </View>
   )
 }
